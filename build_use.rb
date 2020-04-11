@@ -38,8 +38,9 @@ end
 
 user_builder = UserBuilder.new
 user_builder.set_name('テスト', '太郎')
+user_builder.set_birthday('1991-08-11')
 user_builder.set_as_man
 user_builder.set_as_active
 user_builder.set_login_credectiols('test@example.com', 'pass1234')
-user = user_builder
+user = user_builder.user
 p user
