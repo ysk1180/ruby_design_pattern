@@ -123,31 +123,27 @@
 class Sample
   def method_a
     # ・・・
-    common(SampleA.new)
+    common { process_a }
   end
 
   def method_b
     # ・・・
-    common(SampleB.new)
+    common { process_b }
   end
 
   private
 
-  def common(a_or_b_instance)
+  def common
     # ・・・
-    a_or_b_instance.process
+    yield
   end
-end
 
-class SampleA
-  def process
+  def process_a
     # ・・・
     puts 'processAだよ'
   end
-end
 
-class SampleB
-  def process
+  def process_b
     # ・・・
     puts 'processBだよ'
   end
@@ -156,3 +152,40 @@ end
 Sample.new.method_a
 Sample.new.method_b
 
+
+# class Sample
+#   def method_a
+#     # ・・・
+#     common(SampleA.new)
+#   end
+#
+#   def method_b
+#     # ・・・
+#     common(SampleB.new)
+#   end
+#
+#   private
+#
+#   def common(a_or_b_instance)
+#     # ・・・
+#     a_or_b_instance.process
+#   end
+# end
+#
+# class SampleA
+#   def process
+#     # ・・・
+#     puts 'processAだよ'
+#   end
+# end
+#
+# class SampleB
+#   def process
+#     # ・・・
+#     puts 'processBだよ'
+#   end
+# end
+#
+# Sample.new.method_a
+# Sample.new.method_b
+#
