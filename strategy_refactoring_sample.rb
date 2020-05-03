@@ -1,3 +1,5 @@
+# 記事：https://ysk-pro.hatenablog.com/entry/strategy-pattern_sample
+
 # class Sample
 #   def method_a
 #     # ・・・
@@ -120,39 +122,40 @@
 # Sample.new.method_a
 # Sample.new.method_b
 
-class Sample
-  def method_a
-    # ・・・
-    common { process_a }
-  end
+# ③ ブロックを使用
+# class Sample
+#   def method_a
+#     # ・・・
+#     common { process_a }
+#   end
+#
+#   def method_b
+#     # ・・・
+#     common { process_b }
+#   end
+#
+#   private
+#
+#   def common
+#     # ・・・
+#     yield
+#   end
+#
+#   def process_a
+#     # ・・・
+#     puts 'processAだよ'
+#   end
+#
+#   def process_b
+#     # ・・・
+#     puts 'processBだよ'
+#   end
+# end
+#
+# Sample.new.method_a
+# Sample.new.method_b
 
-  def method_b
-    # ・・・
-    common { process_b }
-  end
-
-  private
-
-  def common
-    # ・・・
-    yield
-  end
-
-  def process_a
-    # ・・・
-    puts 'processAだよ'
-  end
-
-  def process_b
-    # ・・・
-    puts 'processBだよ'
-  end
-end
-
-Sample.new.method_a
-Sample.new.method_b
-
-
+# ④ ストラテジーパターンを使用
 # class Sample
 #   def method_a
 #     # ・・・
@@ -188,4 +191,41 @@ Sample.new.method_b
 #
 # Sample.new.method_a
 # Sample.new.method_b
-#
+
+# ⑤ テンプレートメソッドパターンを使用
+class Sample
+  def method_a
+    # ・・・
+    common
+  end
+
+  def method_b
+    # ・・・
+    common
+  end
+
+  private
+
+  def common
+    # ・・・
+    process
+  end
+end
+
+class SampleA < Sample
+  def process
+    # ・・・
+    puts 'processAだよ'
+  end
+end
+
+class SampleB < Sample
+  def process
+    # ・・・
+    puts 'processBだよ'
+  end
+end
+
+SampleA.new.method_a
+SampleB.new.method_b
+
